@@ -1,1 +1,1 @@
-# spook.software
+This is the code for https://spook.software. It's currently...empty.
