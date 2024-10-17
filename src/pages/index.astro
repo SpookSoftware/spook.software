@@ -18,8 +18,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
         <h1
           class="text-pretty text-center md:text-left md:text-4xl lg:text-5xl tracking-wide"
         >
-          This is a <i class="text-primary">software</i
-          > website
+          This is a <i class="text-primary">software</i> website
         </h1>
       </div>
       <div class="hidden md:flex w-1/2 justify-center align-middle" id="image">
@@ -27,7 +26,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
           version="1.2"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 205 160"
-            style="width: 100%; height: auto;"
+          style="width: 100%; height: auto;"
         >
           <path
             id="Layer"
@@ -65,5 +64,33 @@ import BaseLayout from "@layouts/BaseLayout.astro";
     </div>
   </div>
 
-  <style></style>
+  <style>
+    .s0 {
+      stroke: black;
+      fill: none;
+    }
+
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const paths = document.querySelectorAll("path.s0");
+      paths.forEach((path) => {
+        const length = path.getTotalLength();
+        path.style.strokeDasharray = length;
+        path.style.strokeDashoffset = length;
+        path.style.animation = "draw 3s linear forwards";
+      });
+      setTimeout(() => {
+        paths.forEach((path) => {
+          path.style.fill = "black";
+        });
+      }, 3000);
+    });
+  </script>
 </BaseLayout>
