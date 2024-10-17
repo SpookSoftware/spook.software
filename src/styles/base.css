@@ -35,4 +35,53 @@
       hsl(300deg 74% 5%) 100%
     );
   }
+
+  .pattern {
+    --dot-color: white; /* Color of the dots */
+    --dot-size: .5px; /* Radius of the dots */
+    --dot-space: 80px; /* Spacing between dots */
+
+    background: radial-gradient(
+        circle,
+        var(--dot-color) var(--dot-size),
+        transparent var(--dot-size)
+      )
+      0 0 / var(--dot-space) var(--dot-space) repeat;
+  }
+
+  .gradient-pattern {
+    /* Variables for the Dot Pattern */
+    --dot-color: white; /* Color of the dots */
+    --dot-size: 1px; /* Size of the dots */
+    --dot-space: 40px; /* Spacing between dots */
+
+    /* Backgrounds */
+    background:
+			/* Dot Pattern */ radial-gradient(
+          circle,
+          var(--dot-color) var(--dot-size),
+          transparent var(--dot-size)
+        )
+        0 0 / var(--dot-space) var(--dot-space) repeat,
+      /* Gradient Layer */
+        linear-gradient(
+          130deg,
+          hsl(31deg 100% 56%) 0%,
+          hsl(24deg 90% 57%) 2%,
+          hsl(17deg 78% 56%) 4%,
+          hsl(10deg 65% 54%) 6%,
+          hsl(3deg 51% 51%) 9%,
+          hsl(355deg 47% 46%) 13%,
+          hsl(348deg 49% 40%) 18%,
+          hsl(342deg 49% 33%) 23%,
+          hsl(336deg 48% 27%) 29%,
+          hsl(329deg 46% 21%) 37%,
+          hsl(322deg 42% 16%) 47%,
+          hsl(311deg 38% 11%) 62%,
+          hsl(300deg 74% 5%) 100%
+        );
+
+    /* Background Properties */
+    background-repeat: repeat;
+  }
 }
