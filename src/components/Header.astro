@@ -2,10 +2,22 @@
 
 ---
 
-<header class="flex">
-	<a href="/" class="logo">
-		<img src="./spook_horizontal_black.svg" alt="Spook Software Logo" width="205px">
-	</a>
-	<p>I'm a header item</p>
-	<p>I'm another header item</p>
+<header class="py-4 px-6 w-full sticky top-0 z-50">
+  <div class="flex space-x-4 justify-between items-center">
+    <a href="/" class="logo">
+      <img
+        src="./spook_horizontal_black.svg"
+        alt="Spook Software Logo"
+        width="205px"
+      />
+    </a>
+    <div class="flex flex-row gap-2">
+      <a href="/foo">
+        <p>One</p>
+      </a>
+      <a href="/bar">
+        <p>Two</p>
+      </a>
+    </div>
+  </div>
 </header>
