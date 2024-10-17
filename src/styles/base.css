@@ -30,4 +30,8 @@
 			hsl(300deg 74% 5%) 100%
 		);
 	}
+
+	svg {
+		fill: white;
+	}
 }

@@ -28,6 +28,19 @@ import BaseLayout from "@layouts/BaseLayout.astro";
           viewBox="0 0 205 160"
           style="width: 100%; height: auto;"
         >
+          <defs
+            ><linearGradient
+              id="whiteToOrange"
+              x1="0"
+              y1="0"
+              x2="205"
+              y2="0"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stop-color="white"></stop>
+              <stop offset="100%" stop-color="#FF931E"></stop>
+            </linearGradient></defs
+          >
           <path
             id="Layer"
             class="s0"
@@ -54,43 +67,48 @@ import BaseLayout from "@layouts/BaseLayout.astro";
             id="Layer"
             d="m68.9 89.4c-10.6 0-19.1-8.6-19.1-19.2 0-10.5 8.5-19.1 19.1-19.1 10.6 0 19.1 8.6 19.1 19.1 0 10.6-8.5 19.2-19.1 19.2z"
           ></path>
+          <path id="Layer" class="s0" d="M167 89.7L..."></path>
         </svg>
       </div>
     </div>
-  </div>
 
-  <style>
-    .s0 {
-      stroke: black;
-      fill: none;
-    }
-
-    @keyframes draw {
-      to {
-        stroke-dashoffset: 0;
+    <style>
+      .s0 {
+        stroke: url(#whiteToOrange);
+        fill: none;
       }
-    }
-  </style>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const paths = document.querySelectorAll("path.s0");
-      const drawingMilliseconds = 1500;
-      paths.forEach((path) => {
-        if (path instanceof SVGGeometryElement) {
-          const length = path.getTotalLength();
-          path.style.strokeDasharray = length.toString();
-          path.style.strokeDashoffset = length.toString();
-          path.style.animation = `draw ${drawingMilliseconds}ms linear forwards`;
+      path {
+        fill: url(#whiteToOrange);
+      }
+
+      @keyframes draw {
+        to {
+          stroke-dashoffset: 0;
         }
-      });
-      setTimeout(() => {
+      }
+    </style>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const paths = document.querySelectorAll("path.s0");
+        const drawingMilliseconds = 1500;
         paths.forEach((path) => {
           if (path instanceof SVGGeometryElement) {
-            path.style.fill = "black";
+            const length = path.getTotalLength();
+            path.style.strokeDasharray = length.toString();
+            path.style.strokeDashoffset = length.toString();
+            path.style.animation = `draw ${drawingMilliseconds}ms linear forwards`;
           }
         });
-      }, drawingMilliseconds);
-    });
-  </script>
+        setTimeout(() => {
+          paths.forEach((path) => {
+            if (path instanceof SVGGeometryElement) {
+              path.style.fill = "url(#whiteToOrange)";
+            }
+          });
+        }, drawingMilliseconds);
+      });
+    </script>
+  </div>
 </BaseLayout>
