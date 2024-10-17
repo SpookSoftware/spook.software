@@ -21,9 +21,9 @@ const { title, description } = Astro.props;
 
     <title>{title}</title>
   </head>
-  <body class="gradient">
+  <body class="flex flex-col min-h-screen gradient">
     <Header />
-    <main class="flex flex-1 flex-col justify-center items-center px-4">
+    <main class="flex flex-col flex-1 justify-center items-center px-4">
       <slot />
     </main>
     <Footer />
