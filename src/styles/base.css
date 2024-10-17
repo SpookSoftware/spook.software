@@ -17,6 +17,7 @@
     @apply font-header;
   }
 
+  /* Roughly https://www.joshwcomeau.com/gradient-generator/?colors=ff931e|140314&angle=130&colorMode=hcl&precision=8&easingCurve=0.09267241379310345|0.38620692285998115|0.2952586206896552|0.20517244010136046 	 */
   .gradient {
     background-image: linear-gradient(
       130deg,
@@ -38,7 +39,7 @@
 
   .pattern {
     --dot-color: white; /* Color of the dots */
-    --dot-size: .5px; /* Radius of the dots */
+    --dot-size: 0.5px; /* Radius of the dots */
     --dot-space: 80px; /* Spacing between dots */
 
     background: radial-gradient(
