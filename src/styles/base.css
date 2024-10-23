@@ -39,7 +39,7 @@
 
   .pattern {
     --dot-color: white; /* Color of the dots */
-    --dot-size: 0.5px; /* Radius of the dots */
+    --dot-size: 0.75px; /* Radius of the dots */
     --dot-space: 80px; /* Spacing between dots */
 
     background: radial-gradient(
