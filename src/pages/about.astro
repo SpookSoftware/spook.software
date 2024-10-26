@@ -1,42 +1,36 @@
 ---
 import "@styles/base.css";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { Picture } from "astro:assets";
+import koryAndSpook from "@images/spook-little.jpg"
 ---
 
 <BaseLayout
   title="About Spook Software"
   description="Learn more about Spook Software"
 >
-  <div class="content-box w-8/12 mx-auto px-4 py-8 flex-grow">
-    <h1>I'm an H1</h1>
+  <div class="content-box w-8/12 mx-auto px-4 py-8 flex-grow prose">
+    <h1>About Spook Software</h1>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
+      Spook Software is a one-man software company run by <a
+        href="https://korysmith.dev/"
+        rel="external">Kory Smith</a
+      >.
+      It exists to be a purveyor of fine software that make the life of its users better in small, meaningful ways.
     </p>
-    <h2>H2</h2>
-    <p>Eh, whatever</p>
-    <h3>H3, anybody?</h3>
+    <h2>What's with the name?</h2>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
+      The name comes from Kory's beloved cat, Spook, who sadly fell to cancer
+      after only three years in the family. It wasn't nearly enough time.
     </p>
+    <Picture class="m-auto" src={koryAndSpook} formats={['avif', 'webp', 'jpeg']} alt="Spook sitting on Kory's lap" />
   </div>
-</BaseLayout>
 
-<style>
-  .content-box {
-    background-color: rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-  }
-</style>
+  <style>
+    .content-box {
+      background-color: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+    }
+  </style>
+</BaseLayout>
