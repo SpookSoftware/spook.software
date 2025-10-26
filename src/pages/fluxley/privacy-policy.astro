@@ -1,0 +1,298 @@
+---
+import "@styles/base.css";
+import BaseLayout from "@layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Fluxley Privacy Policy"
+  description="Privacy Policy for Fluxley"
+>
+  <div class="content-box w-full md:w-8/12 mx-auto px-4 py-8 flex-grow prose">
+    <h1>Privacy Policy for Fluxley</h1>
+    <p class="text-sm text-gray-400"><strong>Last Updated:</strong> October 23, 2025</p>
+
+    <h2>Introduction</h2>
+    <p>
+      Fluxley ("we", "our", or "us") is a Shopify app that provides AI-powered price negotiation capabilities for online stores. This Privacy Policy explains how we collect, use, store, and protect information when you use our application.
+    </p>
+    <p>
+      We are committed to protecting your privacy and handling your data responsibly. This policy applies to merchants who install Fluxley and their customers who interact with our negotiation widget.
+    </p>
+
+    <h2>Information We Collect</h2>
+
+    <h3>1. Merchant Information</h3>
+    <p>When you install Fluxley, we collect and store:</p>
+    <ul>
+      <li><strong>Shop Information</strong>: Your Shopify shop domain, shop owner name, email address, and user ID</li>
+      <li><strong>Authentication Data</strong>: OAuth access tokens required to interact with your Shopify store</li>
+      <li><strong>Account Details</strong>: First name, last name, account ownership status, locale preferences, email verification status</li>
+      <li><strong>App Configuration</strong>: Your minimum and maximum discount percentage settings, product-specific negotiation settings</li>
+      <li><strong>Subscription Data</strong>: Subscription status, billing information, commission rate (2.9% promotional or 4% standard), monthly usage charges, and billing period details</li>
+    </ul>
+
+    <h3>2. Customer Information</h3>
+    <p>When your customers use the Fluxley negotiation widget:</p>
+    <ul>
+      <li><strong>Conversation Data</strong>: Messages exchanged during price negotiations (not stored by us - see "AI Processing" below)</li>
+      <li><strong>Product Interaction</strong>: Product IDs, titles, and prices that customers negotiate on</li>
+      <li><strong>Order Information</strong>: When a customer completes a purchase using a Fluxley discount code, we collect:
+        <ul>
+          <li>Order ID and order name</li>
+          <li>Customer email address (from the order)</li>
+          <li>Total order amount</li>
+          <li>Discount amount applied</li>
+          <li>Generated discount code used</li>
+        </ul>
+      </li>
+      <li><strong>Negotiation Outcomes</strong>: Whether negotiations resulted in a sale, discount percentages offered</li>
+    </ul>
+
+    <h3>3. Technical Information</h3>
+    <ul>
+      <li><strong>Session Data</strong>: Server-side session management for merchant authentication</li>
+      <li><strong>Webhook Data</strong>: Order creation events, app subscription updates, app uninstallation events</li>
+    </ul>
+
+    <h2>How We Use Your Information</h2>
+
+    <h3>Merchant Data</h3>
+    <p>We use merchant information to:</p>
+    <ul>
+      <li>Authenticate and authorize access to your Shopify store</li>
+      <li>Configure negotiation parameters (min/max discount percentages)</li>
+      <li>Process billing and calculate usage-based charges (commission on sales)</li>
+      <li>Display dashboard analytics showing negotiation performance</li>
+      <li>Provide customer support</li>
+    </ul>
+
+    <h3>Customer Data</h3>
+    <p>We use customer information to:</p>
+    <ul>
+      <li>Facilitate AI-powered price negotiations</li>
+      <li>Generate time-limited discount codes (24-hour expiration)</li>
+      <li>Track negotiation outcomes and conversion rates</li>
+      <li>Calculate commission charges for completed sales</li>
+      <li>Provide merchants with sales analytics</li>
+    </ul>
+
+    <h3>AI Processing</h3>
+    <p>Customer conversation messages are sent to <strong>Anthropic's Claude AI API</strong> for processing price negotiations. Important notes:</p>
+    <ul>
+      <li>Conversations are <strong>not stored</strong> by Fluxley or Anthropic</li>
+      <li>Each negotiation session sends the full conversation history to Claude for context</li>
+      <li>Messages are processed in real-time and are stateless</li>
+      <li>Anthropic uses prompt caching for system instructions (ephemeral cache only)</li>
+      <li>No conversation data is retained after the negotiation session ends</li>
+    </ul>
+
+    <h2>Data Storage and Security</h2>
+
+    <h3>Where We Store Data</h3>
+    <ol>
+      <li><strong>Application Database</strong> (PostgreSQL in production, SQLite in development):
+        <ul>
+          <li>Merchant session tokens and authentication data</li>
+          <li>Subscription status and billing information</li>
+          <li>Commission rates and usage charges</li>
+        </ul>
+      </li>
+      <li><strong>Shopify Metafields</strong> (stored within your Shopify store):
+        <ul>
+          <li>Sales records (up to 100 most recent sales)</li>
+          <li>Negotiation attempt records (up to 100 most recent)</li>
+          <li>Product-specific discount configuration</li>
+          <li>All metafield data is stored under the namespace "fluxley"</li>
+        </ul>
+      </li>
+      <li><strong>Third-Party Services</strong>:
+        <ul>
+          <li><strong>Anthropic Claude API</strong>: Processes conversations in real-time (not stored)</li>
+          <li><strong>Shopify APIs</strong>: All Shopify data accessed via official Admin API</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h3>Storage Limits</h3>
+    <ul>
+      <li>Maximum 100 sales records stored per shop</li>
+      <li>Maximum 100 negotiation records stored per shop</li>
+      <li>Discount codes expire after 24 hours</li>
+      <li>Metafield data is limited to 64KB per field</li>
+    </ul>
+
+    <h3>Security Measures</h3>
+    <ul>
+      <li>OAuth 2.0 authentication with Shopify</li>
+      <li>Secure access token storage in encrypted database</li>
+      <li>Cryptographically secure discount code generation</li>
+      <li>Webhook request validation using Shopify signatures</li>
+      <li>Idempotency keys to prevent duplicate billing charges</li>
+      <li>Input validation and sanitization on all API endpoints</li>
+    </ul>
+
+    <h2>Data Sharing and Third Parties</h2>
+    <p>We share data with the following third parties:</p>
+
+    <h3>Anthropic (Claude AI)</h3>
+    <ul>
+      <li><strong>Purpose</strong>: AI-powered price negotiation</li>
+      <li><strong>Data Shared</strong>: Customer messages, product title and price, discount range limits, conversation history</li>
+      <li><strong>Storage</strong>: Not stored - conversations are stateless</li>
+      <li><strong>Privacy Policy</strong>: <a href="https://www.anthropic.com/privacy" rel="external">https://www.anthropic.com/privacy</a></li>
+    </ul>
+
+    <h3>Shopify</h3>
+    <ul>
+      <li><strong>Purpose</strong>: App platform, billing, and merchant store integration</li>
+      <li><strong>Data Shared</strong>: Usage charges, discount codes created, order webhooks</li>
+      <li><strong>Privacy Policy</strong>: <a href="https://www.shopify.com/legal/privacy" rel="external">https://www.shopify.com/legal/privacy</a></li>
+    </ul>
+
+    <p>We do <strong>not</strong> share your data with:</p>
+    <ul>
+      <li>Analytics platforms</li>
+      <li>Advertising networks</li>
+      <li>Marketing services</li>
+      <li>Any other third parties not listed above</li>
+    </ul>
+
+    <h2>Data Retention</h2>
+
+    <h3>Automatic Deletion</h3>
+    <ul>
+      <li><strong>Conversation History</strong>: Not stored (processed in real-time only)</li>
+      <li><strong>Discount Codes</strong>: Expire after 24 hours</li>
+      <li><strong>Session Data</strong>: Deleted when you uninstall the app</li>
+    </ul>
+
+    <h3>Indefinite Retention (Until App Uninstall)</h3>
+    <ul>
+      <li>Sales records (capped at 100 most recent)</li>
+      <li>Negotiation attempt records (capped at 100 most recent)</li>
+      <li>Subscription and billing information</li>
+      <li>Product configuration settings</li>
+    </ul>
+
+    <h3>App Uninstallation</h3>
+    <p>When you uninstall Fluxley:</p>
+    <ul>
+      <li>All session tokens are immediately deleted from our database</li>
+      <li>Subscription records are marked as inactive</li>
+      <li>Metafield data remains in your Shopify store (under your control)</li>
+      <li>You can manually delete metafields through Shopify admin if desired</li>
+    </ul>
+
+    <h2>Your Data Rights</h2>
+
+    <h3>As a Merchant</h3>
+    <p>You have the right to:</p>
+    <ul>
+      <li><strong>Access</strong>: View all data we store about your shop through the Fluxley dashboard</li>
+      <li><strong>Correct</strong>: Update your discount settings and configuration at any time</li>
+      <li><strong>Delete</strong>: Uninstall the app to remove all session and authentication data</li>
+      <li><strong>Export</strong>: Access sales and negotiation data through your Shopify metafields</li>
+      <li><strong>Opt-Out</strong>: Stop data collection by uninstalling the app or disabling negotiation on specific products</li>
+    </ul>
+
+    <h3>As a Customer</h3>
+    <p>Customers have the right to:</p>
+    <ul>
+      <li><strong>Access</strong>: Request what personal data was collected during negotiations</li>
+      <li><strong>Delete</strong>: Request deletion of negotiation records and email addresses</li>
+      <li><strong>Opt-Out</strong>: Choose not to use the negotiation feature</li>
+    </ul>
+    <p>Customer data requests should be directed to the merchant, who can then contact us for assistance.</p>
+
+    <h2>Compliance with Privacy Laws</h2>
+
+    <h3>GDPR (European Union)</h3>
+    <p>For merchants and customers in the EU:</p>
+    <ul>
+      <li>We process data based on legitimate business interests and contractual necessity</li>
+      <li>You have the right to data portability, erasure, and restriction of processing</li>
+      <li>We comply with mandatory GDPR webhooks for data deletion requests</li>
+      <li>International data transfers to Anthropic (US-based) are subject to standard contractual clauses</li>
+    </ul>
+
+    <h3>CCPA (California)</h3>
+    <p>For California residents:</p>
+    <ul>
+      <li>We do not sell personal information</li>
+      <li>You have the right to know what personal information is collected</li>
+      <li>You have the right to request deletion of personal information</li>
+      <li>You have the right to opt-out of the sale of personal information (we do not sell data)</li>
+    </ul>
+
+    <h3>Shopify Mandatory Compliance Webhooks</h3>
+    <p>We subscribe to Shopify's mandatory compliance webhooks:</p>
+    <ul>
+      <li><strong>customers/data_request</strong>: We will provide customer data within 30 days</li>
+      <li><strong>customers/redact</strong>: We will delete customer data within 30 days</li>
+      <li><strong>shop/redact</strong>: We will delete all shop data within 48 hours of uninstallation</li>
+    </ul>
+    <p>Note: Currently, Fluxley stores minimal customer data (email addresses from completed orders). Most customer interaction data (conversations) is not stored.</p>
+
+    <h2>Cookies and Tracking</h2>
+    <p><strong>Fluxley does not use cookies or tracking technologies.</strong></p>
+    <ul>
+      <li>No browser cookies are set</li>
+      <li>No localStorage or sessionStorage is used</li>
+      <li>No third-party analytics or tracking scripts</li>
+      <li>All session management is server-side</li>
+    </ul>
+
+    <h2>Children's Privacy</h2>
+    <p>
+      Fluxley is not intended for use by individuals under the age of 13 (or 16 in the EU). We do not knowingly collect personal information from children. If you believe we have inadvertently collected data from a child, please contact us immediately.
+    </p>
+
+    <h2>Changes to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time. When we make changes:</p>
+    <ul>
+      <li>The "Last Updated" date at the top will be revised</li>
+      <li>Merchants will be notified of material changes via email</li>
+      <li>Continued use of Fluxley after changes constitutes acceptance</li>
+    </ul>
+    <p>We encourage you to review this policy periodically.</p>
+
+    <h2>Data Breach Notification</h2>
+    <p>In the event of a data breach that affects your information:</p>
+    <ul>
+      <li>We will notify affected merchants within 72 hours</li>
+      <li>Notification will include the nature of the breach, data affected, and remediation steps</li>
+      <li>We will comply with all applicable breach notification laws</li>
+    </ul>
+
+    <h2>Contact Us</h2>
+    <p>If you have questions about this Privacy Policy or wish to exercise your data rights, please contact us:</p>
+    <p>
+      <strong>Email</strong>: support@spook.software<br>
+      <strong>Mailing Address</strong>: 6545 Market Avenue N., Suite 100, North Canton, Ohio 44721
+    </p>
+    <p>For data deletion requests or privacy-related inquiries, please include:</p>
+    <ul>
+      <li>Your Shopify shop domain</li>
+      <li>Detailed description of your request</li>
+      <li>Any relevant order numbers or dates</li>
+    </ul>
+    <p>We will respond to all requests within 30 days.</p>
+
+    <h2>Shopify App Store Listing</h2>
+    <p>
+      This privacy policy is provided in compliance with Shopify's App Store requirements. For questions about Shopify's handling of your data, please see Shopify's privacy policy at <a href="https://www.shopify.com/legal/privacy" rel="external">https://www.shopify.com/legal/privacy</a>.
+    </p>
+
+    <hr>
+
+    <p><strong>By installing and using Fluxley, you acknowledge that you have read and understood this Privacy Policy and agree to its terms.</strong></p>
+  </div>
+
+  <style>
+    .content-box {
+      background-color: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+    }
+  </style>
+</BaseLayout>
