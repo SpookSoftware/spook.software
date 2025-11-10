@@ -41,12 +41,10 @@ const { title, description } = Astro.props;
     </script>
   </head>
   <body class="flex flex-col min-h-screen text-white gradient">
-    <ChristmasLights position="top" />
     <Header />
     <main class="pattern flex flex-col flex-1 justify-center items-center px-4">
       <slot />
     </main>
     <Footer />
-    <ChristmasLights position="bottom" />
   </body>
 </html>
