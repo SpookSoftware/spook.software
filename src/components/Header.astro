@@ -1,8 +1,8 @@
 ---
-
+import ChristmasLights from "@components/ChristmasLights.astro";
 ---
 
-<header class="py-4 px-6 w-full top-0 z-50">
+<header class="relative px-6 w-full top-0 z-50" data-christmas-padding="pt-6">
   <div class="flex space-x-4 justify-between items-center">
     <a href="/" class="logo">
       <img
@@ -21,6 +21,7 @@
       </a>
     </nav>
   </div>
+  <ChristmasLights position="top" />
 </header>
 
 <style>
