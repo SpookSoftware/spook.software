@@ -1,0 +1,125 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  maxWidth?: "narrow" | "wide";
+}
+
+const { title, description, maxWidth = "narrow" } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class:list={["content-container", maxWidth]}>
+    <article class="content-card prose">
+      <slot />
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .content-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .content-container.narrow {
+    max-width: 40rem;
+  }
+
+  .content-container.wide {
+    max-width: 50rem;
+  }
+
+  .content-card {
+    background: rgba(10, 2, 10, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  /* Corner accents */
+  .content-card::before,
+  .content-card::after {
+    content: "";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-color: var(--color-ember);
+    border-style: solid;
+  }
+
+  .content-card::before {
+    top: -1px;
+    left: -1px;
+    border-width: 1px 0 0 1px;
+  }
+
+  .content-card::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 1px 1px 0;
+  }
+
+  /* Typography */
+  .content-card :global(h1) {
+    font-size: var(--step-4);
+    margin-bottom: 1.5rem;
+  }
+
+  .content-card :global(h2) {
+    font-size: var(--step-2);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-ember);
+  }
+
+  .content-card :global(h3) {
+    font-size: var(--step-1);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .content-card :global(p),
+  .content-card :global(li) {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+  }
+
+  .content-card :global(ul),
+  .content-card :global(ol) {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .content-card :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .content-card :global(a) {
+    color: var(--color-ember);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+
+  .content-card :global(a:hover) {
+    color: var(--color-flame);
+  }
+
+  .content-card :global(hr) {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+  }
+
+  .content-card :global(strong) {
+    color: white;
+  }
+</style>
