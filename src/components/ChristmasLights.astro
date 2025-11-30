@@ -263,14 +263,3 @@ const isChristmasSeason =
   }
 </style>
 
-<script>
-  // Add padding to parent elements if lights are present (server already decided visibility)
-  if (document.querySelector('[data-christmas-lights]')) {
-    document.querySelectorAll('[data-christmas-padding]').forEach(el => {
-      const padding = el.getAttribute('data-christmas-padding');
-      if (padding) {
-        el.classList.add(padding);
-      }
-    });
-  }
-</script>

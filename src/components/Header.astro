@@ -1,8 +1,17 @@
 ---
 import ChristmasLights from "@components/ChristmasLights.astro";
+
+// Check if it's Christmas season (must match ChristmasLights.astro logic)
+const now = new Date();
+const month = now.getMonth();
+const day = now.getDate();
+const isChristmasSeason =
+  (month === 10 && day >= 27) || // Nov 27+
+  (month === 11) ||              // All of December
+  (month === 0 && day === 1);    // Jan 1
 ---
 
-<header class="relative px-6 w-full top-0 z-50" data-christmas-padding="pt-6">
+<header class={`relative px-6 w-full top-0 z-50 ${isChristmasSeason ? 'pt-6' : ''}`}>
   <div class="flex space-x-4 justify-between items-center">
     <a href="/" class="logo">
       <img
