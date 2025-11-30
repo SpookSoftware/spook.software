@@ -3,7 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fonts */
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 /* @link https://utopia.fyi/space/calculator?c=320,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+html {
+  scrollbar-gutter: stable both-edges;
+}
 
 :root {
   --space-3xs: clamp(0.3125rem, 0.3125rem + 0vw, 0.3125rem);
@@ -37,11 +45,18 @@
   --step-3: clamp(1.944rem, 1.771rem + 0.8651vw, 2.4414rem);
   --step-4: clamp(2.3328rem, 2.0827rem + 1.2504vw, 3.0518rem);
   --step-5: clamp(2.7994rem, 2.4462rem + 1.7658vw, 3.8147rem);
+
+  /* Colors as CSS vars for animations */
+  --color-void: #140314;
+  --color-shadow: #330333;
+  --color-wine: #8E2E50;
+  --color-ember: #C65842;
+  --color-flame: #FF931E;
 }
 
 @layer base {
   body {
-    @apply font-body;
+    @apply font-body bg-void text-light;
     font-size: var(--step--1);
   }
 
@@ -71,91 +86,98 @@
   h4,
   h5,
   h6 {
-    @apply font-header;
+    @apply font-header font-semibold;
   }
 
   a {
-    @apply underline text-white;
+    @apply text-ember no-underline transition-colors duration-200;
   }
 
   a:hover {
-    text-underline-offset: 0.1ex;
+    @apply text-flame;
   }
 
-  a:visited {
-    @apply text-orange;
-  }
-
-  /* Roughly https://www.joshwcomeau.com/gradient-generator/?colors=ff931e|140314&angle=130&colorMode=hcl&precision=8&easingCurve=0.09267241379310345|0.38620692285998115|0.2952586206896552|0.20517244010136046 	 */
-  .gradient {
-    background-image: linear-gradient(
-      130deg,
-      hsl(31deg 100% 56%) 0%,
-      hsl(24deg 90% 57%) 2%,
-      hsl(17deg 78% 56%) 4%,
-      hsl(10deg 65% 54%) 6%,
-      hsl(3deg 51% 51%) 9%,
-      hsl(355deg 47% 46%) 13%,
-      hsl(348deg 49% 40%) 18%,
-      hsl(342deg 49% 33%) 23%,
-      hsl(336deg 48% 27%) 29%,
-      hsl(329deg 46% 21%) 37%,
-      hsl(322deg 42% 16%) 47%,
-      hsl(311deg 38% 11%) 62%,
-      hsl(300deg 74% 5%) 100%
-    );
-  }
-
-  .pattern {
-    --dot-color: white; /* Color of the dots */
-    --dot-size: 0.75px; /* Radius of the dots */
-    --dot-space: 80px; /* Spacing between dots */
-
-    background: radial-gradient(
-        circle,
-        var(--dot-color) var(--dot-size),
-        transparent var(--dot-size)
-      )
-      0 0 / var(--dot-space) var(--dot-space) repeat;
-  }
-
-  .gradient-pattern {
-    /* Variables for the Dot Pattern */
-    --dot-color: white; /* Color of the dots */
-    --dot-size: 1px; /* Size of the dots */
-    --dot-space: 40px; /* Spacing between dots */
-
-    /* Backgrounds */
+  /* Atmospheric background with gradient vignette and subtle grid */
+  .grain {
+    position: relative;
     background:
-			/* Dot Pattern */ radial-gradient(
-          circle,
-          var(--dot-color) var(--dot-size),
-          transparent var(--dot-size)
-        )
-        0 0 / var(--dot-space) var(--dot-space) repeat,
-      /* Gradient Layer */
-        linear-gradient(
-          130deg,
-          hsl(31deg 100% 56%) 0%,
-          hsl(24deg 90% 57%) 2%,
-          hsl(17deg 78% 56%) 4%,
-          hsl(10deg 65% 54%) 6%,
-          hsl(3deg 51% 51%) 9%,
-          hsl(355deg 47% 46%) 13%,
-          hsl(348deg 49% 40%) 18%,
-          hsl(342deg 49% 33%) 23%,
-          hsl(336deg 48% 27%) 29%,
-          hsl(329deg 46% 21%) 37%,
-          hsl(322deg 42% 16%) 47%,
-          hsl(311deg 38% 11%) 62%,
-          hsl(300deg 74% 5%) 100%
-        );
-
-    /* Background Properties */
-    background-repeat: repeat;
+      /* Radial vignette from center */
+      radial-gradient(
+        ellipse 80% 60% at 50% 40%,
+        rgba(51, 3, 51, 0.4) 0%,
+        transparent 70%
+      ),
+      /* Subtle warm glow at bottom */
+      radial-gradient(
+        ellipse 100% 40% at 50% 100%,
+        rgba(198, 88, 66, 0.08) 0%,
+        transparent 60%
+      ),
+      var(--color-void);
   }
+
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Grid pattern */
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Very subtle noise texture */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Glow animation for logo */
+  @keyframes glow-pulse {
+    0%, 100% {
+      filter: drop-shadow(0 0 20px rgba(198, 88, 66, 0.3));
+    }
+    50% {
+      filter: drop-shadow(0 0 40px rgba(198, 88, 66, 0.5));
+    }
+  }
+
+  .glow-animate {
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-ember) 0%, var(--color-flame) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Card glass effect */
+  .glass-card {
+    @apply bg-shadow/50 backdrop-blur-sm border border-light/10 rounded-lg;
+    transition: all 0.3s ease;
+  }
+
+  .glass-card:hover {
+    @apply border-ember/30 shadow-glow-ember-sm;
+  }
+
   .prose {
-  --flow-space: var(--space-m-l);
-  line-height: 1.8;
-}
+    --flow-space: var(--space-m-l);
+    line-height: 1.8;
+  }
+
+  .prose > * + * {
+    margin-top: var(--flow-space);
+  }
 }

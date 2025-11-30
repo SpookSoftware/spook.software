@@ -124,28 +124,33 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 
     p {
       font-size: var(--step-0);
-      color: rgba(255, 255, 255, 0.7);
+      color: white;
       margin: 0.5rem 0 2rem;
     }
 
     .home-link {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      color: #FF931E;
-      border: 1px solid rgba(255, 147, 30, 0.4);
-      border-radius: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--color-ember);
+      color: white;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 6px;
       text-decoration: none;
-      font-size: var(--step--1);
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
     }
 
     .home-link:hover {
-      background: rgba(255, 147, 30, 0.1);
-      border-color: #FF931E;
+      background: var(--color-flame);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(198, 88, 66, 0.3);
     }
 
     .home-link:visited {
-      color: #FF931E;
+      color: white;
     }
 
     @keyframes float {

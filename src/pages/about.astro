@@ -9,29 +9,109 @@ import koryAndSpook from "@images/spook-little.jpg"
   title="About Spook Software"
   description="Learn more about Spook Software"
 >
-  <div class="content-box w-full md:w-8/12 mx-auto px-4 py-8 flex-grow prose">
-    <h1>About Spook Software</h1>
-    <p>
-      Spook Software is a one-man software company run by <a
-        href="https://korysmith.dev/"
-        rel="external">Kory Smith</a
-      >.
-      It exists to be a purveyor of fine software programs.
-    </p>
-    <h2>What's with the name?</h2>
-    <p>
-      The name comes from Kory's beloved cat, Spook, who sadly fell to cancer
-      after only three years in the family. It wasn't nearly enough time.
-    </p>
-    <br />
-    <Picture class="m-auto" src={koryAndSpook} formats={['avif', 'webp', 'jpeg']} alt="Spook sitting on Kory's lap" />
+  <div class="about-container">
+    <article class="about-content prose">
+      <h1>About Spook Software</h1>
+      <p>
+        Spook Software is a one-man software company run by <a
+          href="https://korysmith.dev/"
+          rel="external">Kory Smith</a
+        >.
+        It exists to be a purveyor of fine software programs.
+      </p>
+
+      <h2>What's with the name?</h2>
+      <p>
+        The name comes from Kory's beloved cat, Spook, who sadly fell to cancer
+        after only three years in the family. It wasn't nearly enough time.
+      </p>
+
+      <figure class="photo-container">
+        <Picture src={koryAndSpook} formats={['avif', 'webp', 'jpeg']} alt="Spook sitting on Kory's lap" class="spook-photo" />
+      </figure>
+    </article>
   </div>
 
   <style>
-    .content-box {
-      background-color: rgba(0, 0, 0, 0.25);
-      backdrop-filter: blur(10px);
-      padding: 2rem;
+    .about-container {
+      width: 100%;
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-content {
+      background: rgba(10, 2, 10, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    /* Corner accents */
+    .about-content::before,
+    .about-content::after {
+      content: "";
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-color: var(--color-ember);
+      border-style: solid;
+    }
+
+    .about-content::before {
+      top: -1px;
+      left: -1px;
+      border-width: 1px 0 0 1px;
+    }
+
+    .about-content::after {
+      bottom: -1px;
+      right: -1px;
+      border-width: 0 1px 1px 0;
+    }
+
+    .about-content h1 {
+      font-size: var(--step-4);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-content h2 {
+      font-size: var(--step-2);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--color-ember);
+    }
+
+    .about-content p {
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.8;
+    }
+
+    .about-content a {
+      color: var(--color-ember);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+    }
+
+    .about-content a:hover {
+      color: var(--color-flame);
+    }
+
+    .photo-container {
+      margin-top: 2rem;
+      border-radius: 2px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .photo-container :global(img) {
+      width: 100%;
+      height: auto;
+      display: block;
     }
   </style>
 </BaseLayout>

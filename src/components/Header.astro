@@ -9,38 +9,176 @@ const isChristmasSeason =
   (month === 10 && day >= 27) || // Nov 27+
   (month === 11) ||              // All of December
   (month === 0 && day === 1);    // Jan 1
+
+// Get current path for active state
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: "/products", label: "Products" },
+  { href: "/about", label: "About" },
+];
 ---
 
-<header class={`relative px-6 w-full top-0 z-50 ${isChristmasSeason ? 'pt-5' : ''}`}>
+<header class={`relative px-6 py-4 w-full top-0 z-50 ${isChristmasSeason ? 'pt-6' : ''}`}>
   <div class="flex space-x-4 justify-between items-center">
-    <a href="/" class="logo">
+    <a href="/" class="logo group">
       <img
         src="/spook_horizontal_white.svg"
         alt="Spook Software Logo"
-        width="205px"
-        class="transition-opacity duration-300 hover:opacity-80"
+        width="180px"
+        class="transition-all duration-300 group-hover:opacity-90"
       />
     </a>
-    <nav class="flex flex-row gap-8 text-xl">
-      <a href="/products">
-        <p>Products</p>
-      </a>
-      <a href="/about">
-        <p>About</p>
-      </a>
+    <nav class="flex flex-row gap-8 text-base font-body">
+      {navLinks.map(({ href, label }) => {
+        const isActive = currentPath === href || currentPath === `${href}/`;
+        return (
+          <a
+            href={href}
+            class:list={["nav-link", { "nav-link--active": isActive }]}
+            aria-current={isActive ? "page" : undefined}
+          >
+            <span class="nav-link__text">{label}</span>
+            <span class="nav-link__glow" aria-hidden="true"></span>
+          </a>
+        );
+      })}
     </nav>
   </div>
   <ChristmasLights position="top" />
 </header>
 
 <style>
-  .border-gradient {
-    border-image-source: linear-gradient(to right, white, #c65842);
-    border-image-slice: 1;
-  }
-
-/* to prevent CLS */
+  /* to prevent CLS */
   img {
     aspect-ratio: 436.39 / 166.44;
+  }
+
+  .nav-link {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 0.25em 0;
+  }
+
+  .nav-link__text {
+    position: relative;
+    z-index: 1;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
+  }
+
+  .nav-link__glow {
+    position: absolute;
+    inset: -4px -8px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 100% 100% at 50% 50%,
+      rgba(198, 88, 66, 0.25) 0%,
+      transparent 70%
+    );
+    transform: scale(0.8);
+  }
+
+  /* Underline element */
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-ember, #C65842), var(--color-flame, #FF931E));
+    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 1px;
+  }
+
+  /* Hover state */
+  .nav-link:hover .nav-link__text {
+    color: var(--color-ember, #C65842);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-link:hover .nav-link__glow {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     VISITED STATE - ghostly trace, you've been there
+     ═══════════════════════════════════════════════════ */
+  .nav-link:visited:not(.nav-link--active) .nav-link__text {
+    color: white;
+  }
+
+  .nav-link:visited:not(.nav-link--active)::before {
+    content: '·';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-wine, #8E2E50);
+    font-size: 0.75em;
+    opacity: 0.7;
+  }
+
+  .nav-link:visited:not(.nav-link--active):hover .nav-link__text {
+    color: var(--color-ember, #C65842);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     ACTIVE STATE - ember glow, you are here
+     ═══════════════════════════════════════════════════ */
+  .nav-link--active {
+    pointer-events: none;
+  }
+
+  .nav-link--active .nav-link__text {
+    color: var(--color-flame, #FF931E);
+    text-shadow:
+      0 0 8px rgba(255, 147, 30, 0.5),
+      0 0 20px rgba(198, 88, 66, 0.3);
+  }
+
+  .nav-link--active .nav-link__glow {
+    opacity: 1;
+    transform: scale(1);
+    background: radial-gradient(
+      ellipse 120% 120% at 50% 50%,
+      rgba(255, 147, 30, 0.15) 0%,
+      rgba(198, 88, 66, 0.1) 40%,
+      transparent 70%
+    );
+    animation: ember-pulse 3s ease-in-out infinite;
+  }
+
+  .nav-link--active::after {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      var(--color-flame, #FF931E) 20%,
+      var(--color-flame, #FF931E) 80%,
+      transparent 100%
+    );
+    box-shadow: 0 0 8px rgba(255, 147, 30, 0.6);
+  }
+
+  @keyframes ember-pulse {
+    0%, 100% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
   }
 </style>

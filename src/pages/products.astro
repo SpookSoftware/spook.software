@@ -7,36 +7,41 @@ import BaseLayout from "@layouts/BaseLayout.astro";
   title="Products | Spook Software"
   description="Software products built by Spook Software"
 >
-  <div class="products-container w-full max-w-5xl mx-auto px-4 py-12">
-    <h1 class="text-center mb-12">Products</h1>
+  <div class="products-container">
+    <h1 class="page-title">Products</h1>
 
     <div class="products-grid">
-      <a href="https://apps.shopify.com/fluxley" class="product-card group" rel="external">
+      <a href="https://apps.shopify.com/fluxley" class="product-card" rel="external">
         <span class="product-tag">Shopify App</span>
-        <div class="card-content">
-          <h2 class="product-name">Fluxley</h2>
-          <p class="product-description">
-            AI-powered price negotiation for Shopify stores. Let customers negotiate
-            personalized discounts in real-time while protecting your profit margins.
-          </p>
-          <span class="product-link">
-            View on Shopify
-            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </span>
-        </div>
+        <h2 class="product-name">Fluxley</h2>
+        <p class="product-description">
+          AI-powered price negotiation for Shopify stores. Let customers negotiate
+          personalized discounts in real-time while protecting your profit margins.
+        </p>
+        <span class="product-link">
+          View on Shopify
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </span>
       </a>
     </div>
   </div>
 
   <style>
-    .products-container h1 {
+    .products-container {
+      width: 100%;
+      max-width: 64rem;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-title {
+      text-align: center;
       font-size: var(--step-4);
-      background: linear-gradient(135deg, #FFFFFF 0%, #FF931E 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      margin-bottom: 3rem;
     }
 
     .products-grid {
@@ -63,96 +68,82 @@ import BaseLayout from "@layouts/BaseLayout.astro";
       display: flex;
       flex-direction: column;
       width: 100%;
-      max-width: 360px;
+      max-width: 400px;
       min-height: 280px;
       padding: 2rem;
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 1rem;
+      background: rgba(10, 2, 10, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
       text-decoration: none;
       overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: all 0.25s ease;
+    }
+
+    /* Corner accents - visible by default */
+    .product-card::before,
+    .product-card::after {
+      content: "";
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-color: var(--color-ember);
+      border-style: solid;
+      transition: all 0.25s ease;
     }
 
     .product-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 1rem;
-      padding: 1px;
-      background: linear-gradient(
-        135deg,
-        rgba(255, 147, 30, 0) 0%,
-        rgba(255, 147, 30, 0) 100%
-      );
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-      transition: background 0.4s ease;
+      top: -1px;
+      left: -1px;
+      border-width: 1px 0 0 1px;
     }
 
-    .product-card:hover::before {
-      background: linear-gradient(
-        135deg,
-        rgba(255, 147, 30, 0.8) 0%,
-        rgba(142, 46, 80, 0.8) 100%
-      );
+    .product-card::after {
+      bottom: -1px;
+      right: -1px;
+      border-width: 0 1px 1px 0;
     }
 
     .product-card:hover {
-      transform: translateY(-4px);
-      background: rgba(0, 0, 0, 0.45);
-      border-color: rgba(255, 147, 30, 0.2);
-      box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.4),
-        0 0 60px rgba(255, 147, 30, 0.08);
+      background: rgba(10, 2, 10, 0.85);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .product-card:hover::before,
+    .product-card:hover::after {
+      width: 40px;
+      height: 40px;
+      border-color: var(--color-flame);
     }
 
     .product-tag {
-      position: absolute;
-      top: 1.25rem;
-      right: 1.25rem;
-      padding: 0.35rem 0.75rem;
-      font-size: 0.7rem;
-      font-weight: 600;
+      display: inline-block;
+      width: fit-content;
+      padding: 0.25rem 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #FF931E;
-      background: rgba(255, 147, 30, 0.12);
-      border: 1px solid rgba(255, 147, 30, 0.25);
-      border-radius: 2rem;
-    }
-
-    .card-content {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      margin-top: 1.5rem;
+      letter-spacing: 0.1em;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 1.25rem;
     }
 
     .product-name {
       font-size: var(--step-2);
       margin-bottom: 1rem;
-      color: #FFFFFF;
-      transition: color 0.3s ease;
+      color: var(--color-light);
+      transition: color 0.2s ease;
     }
 
     .product-card:hover .product-name {
-      color: #FF931E;
-    }
-
-    .product-card:visited .product-name {
-      color: #FF931E;
+      color: var(--color-ember);
     }
 
     .product-description {
       font-size: var(--step--1);
-      line-height: 1.7;
-      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.75;
+      color: white;
       flex: 1;
     }
 
@@ -161,14 +152,15 @@ import BaseLayout from "@layouts/BaseLayout.astro";
       align-items: center;
       gap: 0.5rem;
       margin-top: 1.5rem;
-      font-size: var(--step--1);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--step--2);
       font-weight: 500;
-      color: #FF931E;
+      color: var(--color-ember);
       text-decoration: none;
     }
 
     .product-link .arrow {
-      transition: transform 0.3s ease;
+      transition: transform 0.2s ease;
     }
 
     .product-card:hover .product-link .arrow {

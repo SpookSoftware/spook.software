@@ -28,6 +28,14 @@ const { title, description } = Astro.props;
       media="(prefers-color-scheme: dark)"
     />
 
+    <!-- Safari overscroll and tab bar color -->
+    <meta name="theme-color" content="#140314" />
+    <style>
+      html {
+        background-color: #140314;
+      }
+    </style>
+
     <title>{title}</title>
     <!-- https://caniuse.com/mdn-css_properties_scrollbar-gutter -->
     <script is:inline async={true}>
@@ -39,9 +47,9 @@ const { title, description } = Astro.props;
       }
     </script>
   </head>
-  <body class="flex flex-col min-h-screen text-white gradient">
+  <body class="flex flex-col min-h-screen">
     <Header />
-    <main class="pattern flex flex-col flex-1 justify-center items-center px-4">
+    <main class="grain flex flex-col flex-1 justify-center items-center px-4">
       <slot />
     </main>
     <Footer />

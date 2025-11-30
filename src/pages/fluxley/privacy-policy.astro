@@ -7,9 +7,10 @@ import BaseLayout from "@layouts/BaseLayout.astro";
   title="Fluxley Privacy Policy"
   description="Privacy Policy for Fluxley"
 >
-  <div class="content-box w-full md:w-8/12 mx-auto px-4 py-8 flex-grow prose">
+  <div class="privacy-container">
+    <article class="privacy-content prose">
     <h1>Privacy Policy for Fluxley</h1>
-    <p class="text-sm text-gray-400"><strong>Last Updated:</strong> October 23, 2025</p>
+    <p class="last-updated"><strong>Last Updated:</strong> October 23, 2025</p>
 
     <h2>Introduction</h2>
     <p>
@@ -286,13 +287,110 @@ import BaseLayout from "@layouts/BaseLayout.astro";
     <hr>
 
     <p><strong>By installing and using Fluxley, you acknowledge that you have read and understood this Privacy Policy and agree to its terms.</strong></p>
+    </article>
   </div>
 
   <style>
-    .content-box {
-      background-color: rgba(0, 0, 0, 0.25);
-      backdrop-filter: blur(10px);
-      padding: 2rem;
+    .privacy-container {
+      width: 100%;
+      max-width: 50rem;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .privacy-content {
+      background: rgba(10, 2, 10, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    /* Corner accents */
+    .privacy-content::before,
+    .privacy-content::after {
+      content: "";
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-color: var(--color-ember);
+      border-style: solid;
+    }
+
+    .privacy-content::before {
+      top: -1px;
+      left: -1px;
+      border-width: 1px 0 0 1px;
+    }
+
+    .privacy-content::after {
+      bottom: -1px;
+      right: -1px;
+      border-width: 0 1px 1px 0;
+    }
+
+    .privacy-content h1 {
+      font-size: var(--step-4);
+      margin-bottom: 0.5rem;
+    }
+
+    .privacy-content .last-updated {
+      font-size: var(--step--2);
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 2rem;
+    }
+
+    .privacy-content h2 {
+      font-size: var(--step-2);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--color-ember);
+    }
+
+    .privacy-content h3 {
+      font-size: var(--step-1);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .privacy-content p,
+    .privacy-content li {
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.8;
+    }
+
+    .privacy-content ul,
+    .privacy-content ol {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .privacy-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .privacy-content a {
+      color: var(--color-ember);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+    }
+
+    .privacy-content a:hover {
+      color: var(--color-flame);
+    }
+
+    .privacy-content hr {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 2rem 0;
+    }
+
+    .privacy-content strong {
+      color: white;
     }
   </style>
 </BaseLayout>
