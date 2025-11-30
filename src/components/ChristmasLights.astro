@@ -17,7 +17,7 @@ const { position = 'top' } = Astro.props;
       return (
         <div
           class={`light light-${color}`}
-          style={`animation-delay: ${delay}s; animation-duration: ${duration}s;`}
+          style={`--twinkle-delay: ${delay}s; --twinkle-duration: ${duration}s;`}
         >
           <div class="wire-connect"></div>
           <div class="bulb"></div>
@@ -81,7 +81,6 @@ const { position = 'top' } = Astro.props;
     position: relative;
     width: 15px;
     height: 30px;
-    animation: twinkle 2s ease-in-out infinite;
   }
 
   .bulb {
@@ -94,7 +93,9 @@ const { position = 'top' } = Astro.props;
     border-radius: 40% 40% 50% 50%;
     box-shadow:
       inset 0 -2px 4px rgba(0, 0, 0, 0.2),
-      0 2px 6px currentColor;
+      0 2px 8px currentColor;
+    animation: bulb-glow var(--twinkle-duration, 2s) ease-in-out infinite;
+    animation-delay: var(--twinkle-delay, 0s);
   }
 
   .wire-connect {
@@ -141,6 +142,8 @@ const { position = 'top' } = Astro.props;
     opacity: 0.6;
     filter: blur(6px);
     background: currentColor;
+    animation: twinkle var(--twinkle-duration, 2s) ease-in-out infinite;
+    animation-delay: var(--twinkle-delay, 0s);
   }
 
   .light-red {
@@ -185,12 +188,23 @@ const { position = 'top' } = Astro.props;
 
   @keyframes twinkle {
     0%, 100% {
-      opacity: 1;
-      filter: brightness(1);
+      opacity: 0.8;
     }
     50% {
-      opacity: 0.3;
-      filter: brightness(0.5);
+      opacity: 0.15;
+    }
+  }
+
+  @keyframes bulb-glow {
+    0%, 100% {
+      box-shadow:
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+        0 2px 8px currentColor;
+    }
+    50% {
+      box-shadow:
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+        0 1px 2px currentColor;
     }
   }
 
