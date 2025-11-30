@@ -4,9 +4,19 @@ interface Props {
   position?: 'top' | 'bottom';
 }
 const { position = 'top' } = Astro.props;
+
+// Check if it's Christmas season (server-side)
+const now = new Date();
+const month = now.getMonth();
+const day = now.getDate();
+const isChristmasSeason =
+  (month === 10 && day >= 27) || // Nov 27+
+  (month === 11) ||              // All of December
+  (month === 0 && day === 1);    // Jan 1
 ---
 
-<div class={`christmas-lights-container christmas-lights-${position}`} data-christmas-lights hidden>
+{isChristmasSeason && (
+<div class={`christmas-lights-container christmas-lights-${position}`} data-christmas-lights>
   <div class="lights-wrapper">
     {Array.from({ length: 40 }).map((_, i) => {
       const colors = ['red', 'green', 'blue', 'yellow', 'orange'];
@@ -34,6 +44,7 @@ const { position = 'top' } = Astro.props;
           vector-effect="non-scaling-stroke"/>
   </svg>
 </div>
+)}
 
 <style>
   .christmas-lights-container {
@@ -253,23 +264,8 @@ const { position = 'top' } = Astro.props;
 </style>
 
 <script>
-  const now = new Date();
-  const month = now.getMonth();
-  const day = now.getDate();
-
-  // Show lights: Nov 27 - Dec 31, OR Jan 1
-  const isChristmasSeason =
-    (month === 10 && day >= 27) ||
-    (month === 11) ||
-    (month === 0 && day === 1);
-
-  if (isChristmasSeason) {
-    // Show all Christmas lights
-    document.querySelectorAll('[data-christmas-lights]').forEach(el => {
-      el.removeAttribute('hidden');
-    });
-
-    // Add padding to parent elements that requested it
+  // Add padding to parent elements if lights are present (server already decided visibility)
+  if (document.querySelector('[data-christmas-lights]')) {
     document.querySelectorAll('[data-christmas-padding]').forEach(el => {
       const padding = el.getAttribute('data-christmas-padding');
       if (padding) {
