@@ -34,10 +34,14 @@ import ChristmasLights from "@components/ChristmasLights.astro";
 <style>
   .github-link {
     color: white;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, filter 0.2s ease;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.1));
   }
 
   .github-link:hover {
-    color: var(--color-ember, #C65842);
+    color: var(--color-flame, #FF931E);
+    filter:
+      drop-shadow(0 0 8px rgba(255, 147, 30, 0.6))
+      drop-shadow(0 0 16px rgba(198, 88, 66, 0.4));
   }
 </style>

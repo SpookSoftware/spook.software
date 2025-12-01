@@ -54,6 +54,29 @@ const navLinks = [
     aspect-ratio: 436.39 / 166.44;
   }
 
+  /* Logo neon hover effect */
+  .logo {
+    position: relative;
+    display: inline-block;
+  }
+
+  .logo img {
+    filter:
+      brightness(1)
+      drop-shadow(0 0 0 transparent);
+    transition: filter 0.3s ease;
+  }
+
+  .logo:hover img {
+    filter:
+      brightness(0.9)
+      sepia(1)
+      saturate(12)
+      hue-rotate(-50deg)
+      drop-shadow(0 0 10px rgba(255, 147, 30, 0.6))
+      drop-shadow(0 0 25px rgba(255, 147, 30, 0.4));
+  }
+
   .nav-link {
     position: relative;
     color: white;
