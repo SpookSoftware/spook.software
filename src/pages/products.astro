@@ -79,7 +79,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
       transition: all 0.25s ease;
     }
 
-    /* Corner accents - visible by default */
+    /* Corner accents with neon glow */
     .product-card::before,
     .product-card::after {
       content: "";
@@ -88,6 +88,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
       height: 32px;
       border-color: var(--color-ember);
       border-style: solid;
+      box-shadow: 0 0 6px rgba(198, 88, 66, 0.25);
       transition: all 0.25s ease;
     }
 
@@ -113,6 +114,9 @@ import BaseLayout from "@layouts/BaseLayout.astro";
       width: 40px;
       height: 40px;
       border-color: var(--color-flame);
+      box-shadow:
+        0 0 12px rgba(255, 147, 30, 0.5),
+        0 0 24px rgba(255, 147, 30, 0.25);
     }
 
     .product-tag {

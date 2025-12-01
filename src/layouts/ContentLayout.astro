@@ -43,7 +43,7 @@ const { title, description, maxWidth = "narrow" } = Astro.props;
     position: relative;
   }
 
-  /* Corner accents */
+  /* Corner accents with neon glow */
   .content-card::before,
   .content-card::after {
     content: "";
@@ -52,6 +52,10 @@ const { title, description, maxWidth = "narrow" } = Astro.props;
     height: 32px;
     border-color: var(--color-ember);
     border-style: solid;
+    box-shadow:
+      0 0 8px rgba(198, 88, 66, 0.3),
+      0 0 16px rgba(198, 88, 66, 0.15);
+    animation: corner-pulse 4s ease-in-out infinite;
   }
 
   .content-card::before {
@@ -64,6 +68,22 @@ const { title, description, maxWidth = "narrow" } = Astro.props;
     bottom: -1px;
     right: -1px;
     border-width: 0 1px 1px 0;
+    animation-delay: 2s;
+  }
+
+  @keyframes corner-pulse {
+    0%, 100% {
+      opacity: 0.8;
+      box-shadow:
+        0 0 8px rgba(198, 88, 66, 0.3),
+        0 0 16px rgba(198, 88, 66, 0.15);
+    }
+    50% {
+      opacity: 1;
+      box-shadow:
+        0 0 12px rgba(198, 88, 66, 0.4),
+        0 0 24px rgba(198, 88, 66, 0.2);
+    }
   }
 
   /* Typography */
@@ -77,6 +97,24 @@ const { title, description, maxWidth = "narrow" } = Astro.props;
     margin-top: 2.5rem;
     margin-bottom: 1rem;
     color: var(--color-ember);
+    position: relative;
+    display: inline-block;
+  }
+
+  .content-card :global(h2)::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg,
+      var(--color-ember) 0%,
+      var(--color-flame) 50%,
+      transparent 100%
+    );
+    box-shadow: 0 0 8px rgba(255, 147, 30, 0.4);
+    border-radius: 1px;
   }
 
   .content-card :global(h3) {
@@ -111,6 +149,9 @@ const { title, description, maxWidth = "narrow" } = Astro.props;
 
   .content-card :global(a:hover) {
     color: var(--color-flame);
+    text-shadow:
+      0 0 8px rgba(255, 147, 30, 0.5),
+      0 0 16px rgba(198, 88, 66, 0.3);
   }
 
   .content-card :global(hr) {
