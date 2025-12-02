@@ -23,17 +23,13 @@ export default {
     extend: {
       fontFamily: {
         header: [
-          "Clash Display",
+          "Gambetta",
           "system-ui",
-          "sans-serif",
+          "serif",
         ],
         body: [
           "JetBrains Mono",
           "ui-monospace",
-          "Cascadia Code",
-          "Source Code Pro",
-          "Menlo",
-          "Consolas",
           "monospace",
         ],
       },
