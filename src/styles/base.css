@@ -1,6 +1,43 @@
-/* Fonts - must be first */
-@import url('https://api.fontshare.com/v2/css?f[]=gambetta@400,500,600,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+/* Fonts - self-hosted for caching & performance */
+@font-face {
+  font-family: 'Gambetta';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/gambetta-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Gambetta';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/gambetta-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Gambetta';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/gambetta-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Gambetta';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/gambetta-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin.woff2') format('woff2');
+}
 
 /* Tailwind v4 */
 @import "tailwindcss";
