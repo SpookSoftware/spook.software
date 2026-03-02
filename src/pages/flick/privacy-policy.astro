@@ -1,0 +1,70 @@
+---
+import "@styles/base.css";
+import ContentLayout from "@layouts/ContentLayout.astro";
+---
+
+<ContentLayout
+  title="Flick Privacy Policy"
+  description="Privacy Policy for Flick: Extension Manager with Keyboard Shortcuts"
+  maxWidth="wide"
+>
+  <h1>Privacy Policy for Flick</h1>
+  <p class="last-updated"><strong>Last Updated:</strong> March 2, 2026</p>
+
+  <h2>Introduction</h2>
+  <p>
+    Flick ("we", "our", or "us") is a Chrome extension that lets you search, sort, and toggle your browser extensions from a single popup, with keyboard shortcuts from any tab. This Privacy Policy explains how Flick handles your data.
+  </p>
+
+  <h2>Data Collection</h2>
+  <p>
+    <strong>Flick does not collect, transmit, or store any personal data.</strong>
+  </p>
+  <p>
+    All user preferences — including sort order, keyboard shortcut assignments, extension profiles, and display settings — are stored locally on your device using Chrome's <code>chrome.storage</code> API. This data never leaves your browser.
+  </p>
+
+  <h2>Permissions</h2>
+  <p>Flick requests the following browser permissions:</p>
+  <ul>
+    <li><strong>Management</strong>: Required to list, enable, and disable your installed extensions.</li>
+    <li><strong>Storage</strong>: Required to save your preferences locally on your device.</li>
+  </ul>
+  <p>These permissions are used solely to provide Flick's core functionality. No data accessed through these permissions is collected or transmitted.</p>
+
+  <h2>Third-Party Services</h2>
+  <p>
+    Flick uses <a href="https://extensionpay.com" rel="external">ExtensionPay</a> to process payments for the Pro plan. ExtensionPay handles all payment transactions through <a href="https://stripe.com" rel="external">Stripe</a> and does not store credit card information on its servers. Flick does not have access to your payment details.
+  </p>
+  <p>Flick does not use any analytics, advertising, or tracking services.</p>
+
+  <h2>Cookies and Tracking</h2>
+  <p><strong>Flick does not use cookies or any tracking technologies.</strong></p>
+
+  <h2>Children's Privacy</h2>
+  <p>
+    Flick is not intended for use by individuals under the age of 13. We do not knowingly collect personal information from children.
+  </p>
+
+  <h2>Changes to This Privacy Policy</h2>
+  <p>
+    We may update this Privacy Policy from time to time. When we make changes, the "Last Updated" date at the top will be revised. Continued use of Flick after changes constitutes acceptance of the revised policy.
+  </p>
+
+  <h2>Contact Us</h2>
+  <p>
+    If you have questions about this Privacy Policy, please contact us:
+  </p>
+  <p>
+    <strong>Email</strong>: <a href="mailto:support@flickextension.com">support@flickextension.com</a><br>
+    <strong>Mailing Address</strong>: 6545 Market Avenue N., Suite 100, North Canton, Ohio 44721
+  </p>
+</ContentLayout>
+
+<style>
+  .last-updated {
+    font-size: var(--step--2);
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 2rem;
+  }
+</style>
