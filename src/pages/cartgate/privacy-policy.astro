@@ -1,0 +1,259 @@
+---
+import "@styles/base.css";
+import ContentLayout from "@layouts/ContentLayout.astro";
+---
+
+<ContentLayout
+  title="CartGate Privacy Policy"
+  description="Privacy Policy for CartGate: Shopify Checkout Validation App"
+  maxWidth="wide"
+>
+  <h1>Privacy Policy for CartGate</h1>
+  <p class="last-updated"><strong>Last Updated:</strong> March 9, 2026</p>
+
+  <h2>Introduction</h2>
+  <p>
+    CartGate ("we", "our", or "us") is a Shopify app that validates cart contents at checkout, blocking incompatible product combinations and enforcing purchase rules configured by the merchant. This Privacy Policy explains how we collect, use, store, and protect information when you use our application.
+  </p>
+  <p>
+    This policy applies to merchants who install CartGate and to their customers whose cart data is processed by our checkout validation function.
+  </p>
+
+  <h2>Information We Collect</h2>
+
+  <h3>1. Merchant Information</h3>
+  <p>When you install CartGate, we collect and store:</p>
+  <ul>
+    <li><strong>Shop Information</strong>: Your Shopify shop domain, shop name, and associated account details provided through Shopify OAuth</li>
+    <li><strong>Email Address</strong>: Your email address, used for account communication and product updates</li>
+    <li><strong>Authentication Data</strong>: OAuth access tokens and session tokens required to interact with your Shopify store</li>
+    <li><strong>App Configuration</strong>: Your cart validation rules, including incompatible product combinations, solo-purchase restrictions, and enforcement settings (block or warn)</li>
+  </ul>
+
+  <h3>2. Customer Information</h3>
+  <p>When your customers proceed to checkout:</p>
+  <ul>
+    <li><strong>Cart Contents</strong>: Product IDs and variant IDs in the customer's cart are processed in real time by our validation function to check against your configured rules</li>
+    <li><strong>No Storage</strong>: Customer cart data is processed at the point of checkout validation and is <strong>not stored</strong> by CartGate. The validation function runs as a Shopify Function (compiled to WebAssembly) that evaluates the cart and returns a pass/fail result — no customer data is transmitted to or retained on our servers.</li>
+  </ul>
+
+  <h3>3. Technical Information</h3>
+  <ul>
+    <li><strong>Session Data</strong>: Server-side session tokens for merchant authentication, stored with a 7-day time-to-live (TTL) and automatically deleted upon expiration</li>
+    <li><strong>Webhook Data</strong>: App installation, uninstallation, and mandatory compliance webhook events from Shopify</li>
+  </ul>
+
+  <h2>How We Use Your Information</h2>
+
+  <h3>Merchant Data</h3>
+  <p>We use merchant information to:</p>
+  <ul>
+    <li>Authenticate and authorize access to your Shopify store</li>
+    <li>Store and apply your cart validation rules via Shopify metafields</li>
+    <li>Send transactional emails related to your account (e.g., service notices, security alerts)</li>
+    <li>Send product update emails about new features, changes, or improvements to CartGate (you may unsubscribe at any time)</li>
+    <li>Provide customer support</li>
+  </ul>
+
+  <h3>Customer Data</h3>
+  <p>
+    Customer cart data is used solely to evaluate checkout validation rules in real time. CartGate does not store, transmit, or retain any customer personal information. The validation function runs entirely within Shopify's infrastructure as a Shopify Function.
+  </p>
+
+  <h2>Data Storage and Security</h2>
+
+  <h3>Where We Store Data</h3>
+  <ol>
+    <li><strong>Cloudflare D1 Database</strong>:
+      <ul>
+        <li>Shop records (domain, email, configuration state)</li>
+        <li>App settings and onboarding status</li>
+      </ul>
+    </li>
+    <li><strong>Cloudflare KV Storage</strong>:
+      <ul>
+        <li>Merchant session tokens (encrypted, 7-day TTL with automatic expiration)</li>
+      </ul>
+    </li>
+    <li><strong>Shopify Metafields</strong> (stored within your Shopify store):
+      <ul>
+        <li>Cart validation rules (under the <code>$app:cart-gate</code> namespace)</li>
+        <li>Warning display rules (under the <code>cart_gate</code> namespace)</li>
+        <li>All metafield data remains within your Shopify store and under your control</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h3>Security Measures</h3>
+  <ul>
+    <li>All data transmitted over HTTPS/TLS encryption</li>
+    <li>OAuth 2.0 authentication with Shopify (token exchange flow)</li>
+    <li>Session tokens stored server-side with automatic expiration</li>
+    <li>Webhook request validation using Shopify HMAC signatures</li>
+    <li>Infrastructure hosted on Cloudflare's global network with built-in DDoS protection</li>
+    <li>No customer personal data is stored on our servers</li>
+  </ul>
+
+  <h2>Data Sharing and Third Parties</h2>
+  <p>We share data with the following third parties:</p>
+
+  <h3>Cloudflare</h3>
+  <ul>
+    <li><strong>Purpose</strong>: Application hosting, database, and session storage</li>
+    <li><strong>Data Shared</strong>: Merchant shop data, session tokens, app configuration</li>
+    <li><strong>Privacy Policy</strong>: <a href="https://www.cloudflare.com/privacypolicy/" rel="external">https://www.cloudflare.com/privacypolicy/</a></li>
+  </ul>
+
+  <h3>Shopify</h3>
+  <ul>
+    <li><strong>Purpose</strong>: App platform, merchant store integration, checkout validation</li>
+    <li><strong>Data Shared</strong>: Validation rules (via metafields), webhook events</li>
+    <li><strong>Privacy Policy</strong>: <a href="https://www.shopify.com/legal/privacy" rel="external">https://www.shopify.com/legal/privacy</a></li>
+  </ul>
+
+  <p>We do <strong>not</strong> share your data with:</p>
+  <ul>
+    <li>Advertising networks</li>
+    <li>Data brokers</li>
+    <li>Marketing services</li>
+    <li>Any other third parties not listed above</li>
+  </ul>
+
+  <h2>Analytics</h2>
+  <p>
+    CartGate may use server-side, cookieless analytics to understand how the app is used and to improve the product. No cookies or client-side tracking technologies are used. No personally identifiable information is collected through analytics. If we introduce analytics in the future, this policy will be updated accordingly.
+  </p>
+
+  <h2>Data Retention</h2>
+
+  <h3>Automatic Expiration</h3>
+  <ul>
+    <li><strong>Session Tokens</strong>: Automatically expire and are deleted after 7 days</li>
+    <li><strong>Customer Cart Data</strong>: Not stored — processed in real time only</li>
+  </ul>
+
+  <h3>Active Use</h3>
+  <ul>
+    <li>Shop records and app configuration are retained for the duration of your use of CartGate</li>
+    <li>Validation rules stored in Shopify metafields persist within your Shopify store</li>
+  </ul>
+
+  <h3>After Uninstallation</h3>
+  <p>When you uninstall CartGate:</p>
+  <ul>
+    <li>Session tokens are automatically deleted upon expiration (within 7 days)</li>
+    <li>Shop records and configuration data are retained for <strong>up to 12 months</strong> after uninstallation to allow seamless restoration if you choose to reinstall</li>
+    <li>After 12 months, all shop data is permanently deleted from our systems</li>
+    <li>Metafield data in your Shopify store remains under your control — you may delete it through the Shopify admin at any time</li>
+    <li>You may request immediate deletion of all your data at any time by contacting us (see "Contact Us" below)</li>
+  </ul>
+
+  <h2>Your Data Rights</h2>
+
+  <h3>As a Merchant</h3>
+  <p>You have the right to:</p>
+  <ul>
+    <li><strong>Access</strong>: Request a copy of all data we store about your shop</li>
+    <li><strong>Correct</strong>: Update your validation rules and configuration at any time through the app</li>
+    <li><strong>Delete</strong>: Request immediate deletion of all your data by contacting us, or uninstall the app (data deleted within 12 months)</li>
+    <li><strong>Portability</strong>: Request your data in a portable format</li>
+    <li><strong>Unsubscribe</strong>: Opt out of product update emails at any time via the unsubscribe link in any email</li>
+  </ul>
+
+  <h3>As a Customer</h3>
+  <p>
+    CartGate does not store any customer personal data. The validation function processes cart contents in real time within Shopify's infrastructure and does not retain any information. If you have questions about how a merchant uses CartGate on their store, please contact the merchant directly.
+  </p>
+
+  <h2>Compliance with Privacy Laws</h2>
+
+  <h3>GDPR (European Union)</h3>
+  <p>For merchants and customers in the EU/EEA:</p>
+  <ul>
+    <li>We process merchant data based on <strong>contractual necessity</strong> (to deliver the service you installed) and <strong>legitimate interest</strong> (to communicate product updates, with opt-out available)</li>
+    <li>Customer cart data is processed by a Shopify Function running within Shopify's infrastructure — CartGate acts as a processor under the merchant's controllership</li>
+    <li>You have the right to data portability, erasure, restriction of processing, and to lodge a complaint with your local supervisory authority</li>
+    <li>We comply with Shopify's mandatory GDPR webhooks for data deletion requests</li>
+    <li>Data is stored on Cloudflare's infrastructure, which maintains appropriate safeguards for international data transfers</li>
+  </ul>
+
+  <h3>CCPA (California)</h3>
+  <p>For California residents:</p>
+  <ul>
+    <li>We do <strong>not</strong> sell personal information</li>
+    <li>We do <strong>not</strong> share personal information for cross-context behavioral advertising</li>
+    <li>You have the right to know what personal information is collected, to request deletion, and to non-discrimination for exercising your rights</li>
+  </ul>
+
+  <h3>Shopify Mandatory Compliance Webhooks</h3>
+  <p>We handle Shopify's mandatory compliance webhooks:</p>
+  <ul>
+    <li><strong>customers/data_request</strong>: We will respond within 30 days. Note: CartGate does not store customer personal data.</li>
+    <li><strong>customers/redact</strong>: We will process the request within 30 days. Note: CartGate does not store customer personal data.</li>
+    <li><strong>shop/redact</strong>: We will delete all shop data within 30 days of receiving the request.</li>
+  </ul>
+
+  <h2>Cookies and Tracking</h2>
+  <p><strong>CartGate does not use cookies or client-side tracking technologies.</strong></p>
+  <ul>
+    <li>No browser cookies are set by CartGate</li>
+    <li>No client-side analytics or tracking scripts</li>
+    <li>No fingerprinting or cross-site tracking</li>
+    <li>All session management is server-side with automatic expiration</li>
+  </ul>
+  <p>Note: Shopify's embedded app framework may set its own cookies as part of its authentication and session management. Those cookies are governed by <a href="https://www.shopify.com/legal/privacy" rel="external">Shopify's Privacy Policy</a>.</p>
+
+  <h2>Email Communications</h2>
+  <p>We may send you the following types of emails:</p>
+  <ul>
+    <li><strong>Transactional Emails</strong>: Service-related notices, security alerts, and account notifications. These are necessary for the operation of the service and cannot be opted out of while you use CartGate.</li>
+    <li><strong>Product Updates</strong>: Information about new features, changes, and improvements to CartGate. You may unsubscribe from these at any time using the unsubscribe link included in every email.</li>
+  </ul>
+  <p>We will never share your email address with third parties for marketing purposes.</p>
+
+  <h2>Children's Privacy</h2>
+  <p>
+    CartGate is a business-to-business application intended for use by Shopify merchants. It is not intended for use by individuals under the age of 16. We do not knowingly collect personal information from children. If you believe we have inadvertently collected data from a child, please contact us immediately.
+  </p>
+
+  <h2>Data Breach Notification</h2>
+  <p>In the event of a data breach that affects your information:</p>
+  <ul>
+    <li>We will notify affected merchants within 72 hours of becoming aware of the breach, as required by GDPR</li>
+    <li>Notification will include the nature of the breach, categories of data affected, and remediation steps taken</li>
+    <li>We will cooperate with relevant supervisory authorities as required by law</li>
+  </ul>
+
+  <h2>Changes to This Privacy Policy</h2>
+  <p>We may update this Privacy Policy from time to time. When we make changes:</p>
+  <ul>
+    <li>The "Last Updated" date at the top will be revised</li>
+    <li>Merchants will be notified of material changes via email</li>
+    <li>Continued use of CartGate after changes constitutes acceptance of the revised policy</li>
+  </ul>
+
+  <h2>Contact Us</h2>
+  <p>If you have questions about this Privacy Policy, wish to exercise your data rights, or need to submit a data deletion request, please contact us:</p>
+  <p>
+    <strong>Email</strong>: <a href="mailto:support@cartgate.app">support@cartgate.app</a><br>
+    <strong>Mailing Address</strong>: 6545 Market Avenue N., Suite 100, North Canton, Ohio 44721
+  </p>
+  <p>When contacting us about a data request, please include:</p>
+  <ul>
+    <li>Your Shopify shop domain</li>
+    <li>A description of your request</li>
+  </ul>
+  <p>We will respond to all requests within 30 days.</p>
+
+  <hr>
+
+  <p><strong>By installing and using CartGate, you acknowledge that you have read and understood this Privacy Policy and agree to its terms.</strong></p>
+</ContentLayout>
+
+<style>
+  .last-updated {
+    font-size: var(--step--2);
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 2rem;
+  }
+</style>
